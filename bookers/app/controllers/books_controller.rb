@@ -17,7 +17,8 @@ class BooksController < ApplicationController
   def destroy
     book = Book.find(params[:id])
     book.destroy
-    redirect_to book_path
+    redirect_to books_path
+    # 一覧画面へリダイレクトしたい
   end
 
   def create
@@ -27,7 +28,7 @@ class BooksController < ApplicationController
     book.save
   # トップ画面へリダイレクト→それ自身の詳細画面へリダイレクトしてあげる_pathで[:id]とかの代用ができている
   # 多分名前付きルートで[book]を指定した意味がここにある
-    redirect_to book_path(book.id) 
+    redirect_to show_book_path(book.id) 
   end
 
   def show
@@ -38,7 +39,7 @@ class BooksController < ApplicationController
   def update
     book = Book.find(params[:id])
     book.update(book_params)
-    redirect_to books_path(book.id)
+    redirect_to show_book_path(book.id)
     # ここら辺何をしてるのか復習する
   end
 
