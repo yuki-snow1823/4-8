@@ -3,4 +3,6 @@
 <h2>Body:</h2>
 <p><%= @book.body %></p>
 
+<%= link_to "edit", edit_book_path(@book.id) %> 
+<!-- これ多分名前付きルート↑ -->
 <%= link_to "back" , "/books" %>

@@ -10,10 +10,14 @@ class BooksController < ApplicationController
   end
 
   def edit
+    @book = Book.find(params[:id]) 
 
   end
 
   def destroy
+    book = Book.find(params[:id])
+    book.destroy
+    redirect_to book_path
   end
 
   def create
@@ -29,6 +33,13 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id]) 
     #これをbooks/showにアクセスした時に行う
+  end
+
+  def update
+    book = Book.find(params[:id])
+    book.update(book_params)
+    redirect_to books_path(book.id)
+    # ここら辺何をしてるのか復習する
   end
 
   private

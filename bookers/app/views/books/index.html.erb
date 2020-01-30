@@ -3,9 +3,11 @@
  <h1>投稿一覧</h1>
    <% @books.each do |book| %>
       <span><%= book.title %></span>
-      <span><%= book.body %></span><br>
-      <%=link_to "show", "/books/#{@book.id}" %>
-      <!-- 何かが違う -->
+      <span><%= book.body %></span>
+      <%=link_to "show", "/books/#{book.id}" %>
+      <%= link_to "edit", "/books/#{book.id}/edit" %>
+      <%= link_to "delete", "books/#{book.id}", method: :delete, "data-confirm" => "Are you Sure?" %><br> 
+      <!-- 何かが違う→解決。@book.idではない-->
    <% end %>
 
 
@@ -18,7 +20,7 @@
     <%= f.text_field :title %>
  
     <h4>Body</h4>
-    <%= f.text_area :body %>
+    <%= f.text_area :body %><br>
  
     <%= f.submit 'Create book' %>
  
