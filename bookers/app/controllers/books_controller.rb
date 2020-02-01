@@ -15,10 +15,11 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book = Book.find(params[:id])
-    @book.destroy
+    book = Book.find(params[:id])
+    book.destroy
     redirect_to books_path
-    # 一覧画面へリダイレクトしたい
+  # 一覧画面へリダイレクトしたい
+  # 文字の表示をインデックスでリダイレクトした後に行いたい 
   end
 
   def create
@@ -26,7 +27,8 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
   # 投稿されたらDBへ保存する
     if @book.save
-     redirect_to show_book_path(@book.id)  
+     flash[:success] = "Book was successfully updated."
+     redirect_to book_path(@book.id)  
   # トップ画面へリダイレクト→それ自身の詳細画面へリダイレクトしてあげる_pathで[:id]とかの代用ができている
   # 多分名前付きルートで[book]を指定した意味がここにある
     else
@@ -50,7 +52,7 @@ class BooksController < ApplicationController
     # ここら辺何をしてるのか復習する
     if book.update(book_params)
       flash[:success] = "Book was successfully updated."
-      redirect_to show_book_path(book.id)
+      redirect_to book_path(book.id)
     end
   end
 

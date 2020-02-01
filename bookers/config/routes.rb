@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   post 'books' => 'books#create'
   #投稿されたとき、createメソッド使う
 
-  get 'books/:id' => 'books#show' , as: 'show_book'
+  get 'books/:id' => 'books#show' , as: 'book'
   # ここが分かっていません
 end
